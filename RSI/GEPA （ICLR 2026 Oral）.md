@@ -39,7 +39,7 @@ $$
 - **利用自然语言反馈进行反思（Reflection Using Natural Language Feedback）** 对应 **Evaluation Traces as Diagnostic Signals（将评估轨迹作为诊断信号）**和 **Reflective Prompt Mutation（反思式 Prompt 变异）**
 - **基于 Pareto 的候选选择（Pareto-based Candidate Selection）**对应 **PARETO-BASED CANDIDATE SELECTION（ 基于帕累托的候选项选择）**
 
-![image-20261118164255847](./Image/GEPA （ICLR 2026 Oral）/image-20261118164255847.png)
+![image-20261118164255847](<./Image/GEPA （ICLR 2026 Oral）/image-20261118164255847.png>)
 
 ### **Genetic Optimization Loop（遗传式优化循环）**
 
@@ -100,7 +100,7 @@ GEPA 采用了一种基于 Pareto 策略。对于每一个训练实例，GEPA �
 
 对于每一个验证任务组，GEPA 都会记录所有候选项在该组上取得的最高分数，从而形成一个 Pareto Frontier。首先在至少一个任务组上取得最高分数的候选项会被保留下来。然后对于那些严格被其他候选项支配的候选项则会被剪枝。
 
-![image-20261118193427152](./Image/GEPA （ICLR 2026 Oral）/image-20261118193427152.png)
+![image-20261118193427152](<./Image/GEPA （ICLR 2026 Oral）/image-20261118193427152.png>)
 
 figure 6 里面的分数，应该是 $D_{\text{pareto}}$里面的平均值
 
@@ -117,11 +117,11 @@ figure 6 里面的分数，应该是 $D_{\text{pareto}}$里面的平均值
 
 ### **Qwen3 8B 上的实验结果：**
 
-![image-20261118235616846](./Image/GEPA （ICLR 2026 Oral）/image-20261118235616846.png)
+![image-20261118235616846](<./Image/GEPA （ICLR 2026 Oral）/image-20261118235616846.png>)
 
 ### **GPT-4.1 Mini 上的实验结果：**
 
-![image-20261119000154944](./Image/GEPA （ICLR 2026 Oral）/image-20261119000154944.png)
+![image-20261119000154944](<./Image/GEPA （ICLR 2026 Oral）/image-20261119000154944.png>)
 
 Optimized with Qwen3-8B,evaluated on GPT-4.1-Mini 指一个跨模型迁移实验：先在 Qwen3-8B 上把 prompt 优化好，再一个字不改，直接拿到 GPT-4.1 Mini 上测试。这一行就叫 GEPA-Qwen-Opt。
 
@@ -140,7 +140,7 @@ GEPA+Merge 进一步扩大了这一差距：在与 GEPA 相近的 Rollout 预算
 
 作者还指出，GEPA 的 Rollout 预算中，大部分实际上花在了验证（$D_{\text{pareto}}$上面的验证）上。在验证过程中，分数仅用于候选项选择，并不会产生学习信号。
 
-![image-20261119001930661](./Image/GEPA （ICLR 2026 Oral）/image-20261119001930661.png)
+![image-20261119001930661](<./Image/GEPA （ICLR 2026 Oral）/image-20261119001930661.png>)
 
 ### **Observation 2：仅优化 Instruction 的反思式 Prompt 演化，可以超过联合优化 Instruction 和 Few-shot Examples 的方法**
 
@@ -159,10 +159,10 @@ GEPA+Merge 进一步扩大了这一差距：在与 GEPA 相近的 Rollout 预算
 2. **BeamSearch**：维护一个得分最高的 Top-N 候选池。APO 使用了类似策略。
 3. **GEPA Pareto-based Selection**：根据 Pareto Frontier 进行候选项选择。
 
-![image-20261119003402639](./Image/GEPA （ICLR 2026 Oral）/image-20261119003402639.png)
+![image-20261119003402639](<./Image/GEPA （ICLR 2026 Oral）/image-20261119003402639.png>)
 
 ### **Observation 4：Instruction 优化得到的 Prompt，比 Few-shot Demonstration Prompt 计算成本更低，泛化能力更好**
 
 除了具备较强的泛化能力之外，反思式演化得到的 Instruction 还有一个重要的实际优势：**它们通常更短，因此计算效率更高。**而对于复杂任务，这一优势尤其明显，因为即使一个 Few-shot Demonstration，也可能非常长。值得注意的是，GEPA 和 GEPA+Merge 生成的 Prompt 最多比 MIPROv2 短 9.2 倍。这不仅提高了模型性能，也显著改善了计算效率。此外，作者观察到一个趋势：整体而言，性能更高的优化器往往会生成更短的 Prompt（见图 17）。
 
-![image-20261119010401087](./Image/GEPA （ICLR 2026 Oral）/image-20261119010401087.png)
+![image-20261119010401087](<./Image/GEPA （ICLR 2026 Oral）/image-20261119010401087.png>)
