@@ -37,7 +37,7 @@ $$
     =
 {\color{#623F99}\text{LLM}}
 ({\color{#228B22}\text{Prompt}}+\text{Question}),
-\tag{1}
+\qquad (1)
 $$
 
 $$
@@ -45,7 +45,7 @@ $$
     =
 {\color{#623F99}\text{LLM}}
 (\text{Evaluation Instruction}+\text{Prediction}),
-\tag{2}
+\qquad (2)
 $$
 
 使用 $\color{#228B22}{\text{绿色}}$ 表示需要优化的自由参数，即提示词（Prompt）。
@@ -62,7 +62,7 @@ $$
 \xrightarrow{\color{#623F99}{\text{LLM}}}
 \text{Evaluation},
 \end{aligned}
-\tag{3}
+\qquad (3)
 $$
 
 ### **梯度计算（gradient computation）**
@@ -82,11 +82,11 @@ $$
 可以进行类似的反向传播：
 
 $$
-\frac{\partial\text{Evaluation}}{\partial\text{Prediction}}={\color{#623F99}\nabla_{\text{LLM}}}(\text{Prediction},\text{Evaluation}),\tag{4}
+\frac{\partial\text{Evaluation}}{\partial\text{Prediction}}={\color{#623F99}\nabla_{\text{LLM}}}(\text{Prediction},\text{Evaluation}),\qquad (4)
 $$
 
 $$
-\begin{aligned}\frac{\partial\text{Evaluation}}{\partial{\color{#228B22}\text{Prompt}}}=\frac{\partial\text{Evaluation}}{\partial\text{Prediction}}\circ\frac{\partial\text{Prediction}}{\partial{\color{#228B22}\text{Prompt}}}={\color{#623F99}\nabla_{\text{LLM}}}\left({\color{#228B22}\text{Prompt}},\text{Prediction},\frac{\partial\text{Evaluation}}{\partial\text{Prediction}}\right)\end{aligned}\tag{5}
+\begin{aligned}\frac{\partial\text{Evaluation}}{\partial{\color{#228B22}\text{Prompt}}}=\frac{\partial\text{Evaluation}}{\partial\text{Prediction}}\circ\frac{\partial\text{Prediction}}{\partial{\color{#228B22}\text{Prompt}}}={\color{#623F99}\nabla_{\text{LLM}}}\left({\color{#228B22}\text{Prompt}},\text{Prediction},\frac{\partial\text{Evaluation}}{\partial\text{Prediction}}\right)\end{aligned}\qquad (5)
 $$
 
 使用 $\color{#623F99}{\nabla_{\text{LLM}}}$ 表示其梯度算子（Gradient Operator）。具体而言，该算子函数返回自然语言形式的反馈，例如：
@@ -106,7 +106,7 @@ $$
 > \text{“Here is a conversation with an LLM: }
 > \lbrace x|y\rbrace\text{.”}
 > \end{aligned}
-> \tag{6}
+> \qquad (6)
 > $$
 >
 > $$
@@ -159,7 +159,7 @@ $$
 \left(\theta,\frac{\partial\mathcal L}{\partial\theta}\right)
 =\theta-\frac{\partial\mathcal L}{\partial\theta}.
 \end{aligned}
-\tag{7}
+\qquad (7)
 $$
 
 沿用基于梯度的优化方法这一类比，我们使用**文本梯度下降（Textual Gradient Descent，TGD）**：
@@ -174,7 +174,7 @@ $$
 {\partial{\color{#228B22}\text{Prompt}}}
 \right).
 \end{aligned}
-\tag{8}
+\qquad (8)
 $$
 
 > **单次 TGD 迭代的示例实现（Example implementation of one TGD iteration）**
@@ -196,7 +196,7 @@ $$
 > \text{and produce a new variable.}
 > \end{pmatrix}
 > \end{aligned}
-> \tag{9}
+> \qquad (9)
 > $$
 >
 > 其中，LLM 接收的提示词含义为：
@@ -221,7 +221,7 @@ $$
 v={\color{#623F99}f_v}
 (\operatorname{PredecessorsOf}(v)),
 \quad \forall v\in\mathcal V
-\tag{10}
+\qquad (10)
 $$
 
 其中， $v$ 是计算图中的一个变量， $\mathcal V$ 是计算图中所有变量的集合。在本文的大部分实验结果中， $v$ 都是自然语言文本。
@@ -251,7 +251,7 @@ $$
 \left(
 v,w,\frac{\partial\mathcal L}{\partial w}
 \right),
-\tag{11}
+\qquad (11)
 $$
 
 函数 $\color{#623F99}{\nabla_f}$ 接收以下信息作为输入：
@@ -271,7 +271,7 @@ v_{\text{new}}
 \left(
 v,\frac{\partial\mathcal L}{\partial v}
 \right),
-\tag{12}
+\qquad (12)
 $$
 
 ### **目标函数（Objective functions）**
@@ -288,7 +288,7 @@ $$
 \text{请评价该代码的正确性和运行时间复杂度。}
 \end{pmatrix}
 \end{aligned}
-\tag{13}
+\qquad (13)
 $$
 
 ### **实例优化与提示词优化（Instance vs Prompt Optimization）**
@@ -317,7 +317,7 @@ $$
 ={\color{#623F99}\text{LLM}}\big(
 \text{Problem}+{\color{#228B22}\text{Code}}+\text{Test-time Instruction}+\text{Local Test Results}\big)
 \end{aligned}
-\tag{14}
+\qquad (14)
 $$
 
 - 被优化的变量： ${\color{#228B22}\text{Code}}$
