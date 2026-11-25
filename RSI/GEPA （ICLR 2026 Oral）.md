@@ -1,5 +1,7 @@
 # GEPA （ICLR 2026 Oral）
 
+![image-20261119194929046](./Image/GEPA%20%EF%BC%88ICLR%202026%20Oral%EF%BC%89/image-20261119194929046.png)
+
 参考文章：[ GEPA：反思式Prompt进化，效果超过RL - 知乎](https://zhuanlan.zhihu.com/p/1942188940221216523)
 
 ## ABSTRACT
