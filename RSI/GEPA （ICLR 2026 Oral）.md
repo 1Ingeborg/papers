@@ -33,7 +33,7 @@ $$
 而GEPA关注的是**样本高效的优化（Sample-Efficient Optimization）** 问题，即Rollout 不超过预算 $B$ 内，找到最优的prompts $\Pi^{\ast}$（权重 $\Theta$ 固定）：
 
 $$
-(\Pi^{\ast}, \Theta^{\ast})_\Phi = \arg\max_{(\Pi, \Theta)} \mathbb{E}_{(x,m) \sim \mathcal{T}} [\mu(\Phi(x; (\Pi, \Theta)), m)] \quad \text{s.t.} \quad \#\text{rollouts} \le B
+(\Pi^{\ast}, \Theta^{\ast})_\Phi = \arg\max_{(\Pi, \Theta)} \mathbb{E}_{(x,m) \sim \mathcal{T}} [\mu(\Phi(x; (\Pi, \Theta)), m)] \quad \text{s.t.} \quad \text{#}\text{rollouts} \le B
 $$
 
 ## **GEPA: Reflective Prompt evolution**
