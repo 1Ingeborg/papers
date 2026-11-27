@@ -35,11 +35,15 @@ DGM 使用 **Benchmark 评测替代形式化证明**，通过实际运行结果�
 
 传统 Agent 优化方法使用固定的优化器：
 
-\[ A_{t+1}=\operatorname{Optimizer}(A_t) \]
+$$
+A_{t+1}=\operatorname{Optimizer}(A_t)
+$$
 
 DGM 则让 **Agent 自己修改自己的源代码**（感觉这个是更以往的工作不同的主要diff）：
 
-\[ A_{t+1}=A_t.\operatorname{modify}(A_t) \]
+$$
+A_{t+1}=A_t.\operatorname{modify}(A_t)
+$$
 
 优化对象包括 Prompt、Tools、Workflow 等 Agent 组件，基础模型参数保持冻结。
 
@@ -97,7 +101,7 @@ DGM 从单个初始编程智能体开始，逐步构建一个包含所有已发�
 
 $$
 w_i=
-\frac{\operatorname{Sigmoid}(\exp(-\lambda(\alpha_i-\alpha_0))}
+\frac{\operatorname{Sigmoid}(\lambda(\alpha_i-\alpha_0))}
 {1+n_i}
     =
 \underbrace{
