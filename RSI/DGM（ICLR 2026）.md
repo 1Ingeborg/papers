@@ -36,13 +36,13 @@ DGM 使用 **Benchmark 评测替代形式化证明**，通过实际运行结果�
 传统 Agent 优化方法使用固定的优化器：
 
 $$
-A_{t+1}=\operatorname{Optimizer}(A_t)
+A_{t+1}=\mathrm{Optimizer}(A_t)
 $$
 
 DGM 则让 **Agent 自己修改自己的源代码**（感觉这个是更以往的工作不同的主要diff）：
 
 $$
-A_{t+1}=A_t.\operatorname{modify}(A_t)
+A_{t+1}=A_t.\mathrm{modify}(A_t)
 $$
 
 优化对象包括 Prompt、Tools、Workflow 等 Agent 组件，基础模型参数保持冻结。
@@ -101,7 +101,7 @@ DGM 从单个初始编程智能体开始，逐步构建一个包含所有已发�
 
 $$
 w_i=
-\frac{\operatorname{Sigmoid}(\lambda(\alpha_i-\alpha_0))}
+\frac{\mathrm{Sigmoid}(\lambda(\alpha_i-\alpha_0))}
 {1+n_i}
     =
 \underbrace{
@@ -123,7 +123,7 @@ $$
 
 - **Exploitation：** $\alpha_i\uparrow\Rightarrow w_i\uparrow$，优先探索高性能 Agent。
 - **Exploration：** $n_i\uparrow\Rightarrow w_i\downarrow$，避免过度探索同一个 Agent。
-- **Open-endedness：** 对所有符合条件的 Agent，均有 $p_i>0$，保留潜在的演化路径。
+- **Open-endedness：** 对所有符合条件的 Agent，均有 $p_i \gt 0$，保留潜在的演化路径。
 
 根据父代选取概率，sampling k次（SWE-bench 取 k=2，Polyglot 取 k=4。），父代选取概率为：
 
@@ -175,9 +175,9 @@ DGM 使用一个独立的基础模型（OpenAI o1）分析父代 Agent 的失败
 
 将它们作为新的编程任务交给父代 Agent，由父代 Agent 修改自身代码库，生成子代 Agent。
 
-## **Experiments**
+## Experiments
 
-### **Experiment Setup 和 **Benchmarks
+### Experiment Setup 和 Benchmarks
 
 初始 Agent 可以使用两种工具：
 
@@ -229,11 +229,11 @@ DGM 使用一个独立的基础模型（OpenAI o1）分析父代 Agent 的失败
 $$
 \begin{aligned}
 \text{DGM:}\quad
-&c=p.\operatorname{modify}(p)\\
+&c=p.\mathrm{modify}(p)\\
 \text{w/o Self-improve:}\quad
-&c=g_0.\operatorname{modify}(p)\\
+&c=g_0.\mathrm{modify}(p)\\
 \text{w/o Open-ended:}\quad
-&c=g_{\mathrm{latest}}.\operatorname{modify}
+&c=g_{\mathrm{latest}}.\mathrm{modify}
 (g_{\mathrm{latest}})
 \end{aligned}
 $$

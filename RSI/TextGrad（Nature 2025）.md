@@ -155,7 +155,7 @@ $$
 $$
 \begin{aligned}
 \theta_{\text{new}}
-&={\color{#623F99}\operatorname{GradientDescent.step}}
+&={\color{#623F99}\mathrm{GradientDescent.step}}
 \left(\theta,\frac{\partial\mathcal L}{\partial\theta}\right)
 =\theta-\frac{\partial\mathcal L}{\partial\theta}.
 \end{aligned}
@@ -167,7 +167,7 @@ $$
 $$
 \begin{aligned}
 &{\color{#228B22}\text{Prompt}_{\text{new}}}
-={\color{#623F99}\operatorname{TGD.step}}
+={\color{#623F99}\mathrm{TGD.step}}
 \left(
 {\color{#228B22}\text{Prompt}},
 \frac{\partial\text{Evaluation}}
@@ -183,7 +183,7 @@ $$
 > \begin{aligned}
 > x_{\text{new}}
 > &=
-> {\color{#623F99}\operatorname{TGD.step}}
+> {\color{#623F99}\mathrm{TGD.step}}
 > \left(x,\frac{\partial\mathcal L}{\partial x}\right)
 > \\
 > &\triangleq
@@ -219,15 +219,15 @@ $$
 
 $$
 v={\color{#623F99}f_v}
-(\operatorname{PredecessorsOf}(v)),
+(\mathrm{PredecessorsOf}(v)),
 \quad \forall v\in\mathcal V
 \qquad (10)
 $$
 
 其中， $v$ 是计算图中的一个变量， $\mathcal V$ 是计算图中所有变量的集合。在本文的大部分实验结果中， $v$ 都是自然语言文本。
 
-- $\operatorname{SuccessorsOf}(v)$：返回变量 $v$ 的所有后继节点。
-- $\operatorname{PredecessorsOf}(v)$：返回变量 $v$ 的所有前驱节点。
+- $\mathrm{SuccessorsOf}(v)$：返回变量 $v$ 的所有后继节点。
+- $\mathrm{PredecessorsOf}(v)$：返回变量 $v$ 的所有前驱节点。
 
 我们将 $\color{#623F99}{f_v}$ 定义为一个变换函数，它接收一组变量作为输入，并生成变量 $v$。例如，我们可以使用 $\color{#623F99}{\text{LLM}}$ 或 $\color{#623F99}{\text{Numerical Simulator}}$（数值模拟器）作为变换函数。
 
@@ -236,7 +236,7 @@ $$
 $$
 \frac{\partial L}{\partial v}
     =
-{\sum}_{w\in\operatorname{SuccessorsOf}(v)}
+{\sum}_{w\in\mathrm{SuccessorsOf}(v)}
 \frac{\partial L}{\partial w}
 \frac{\partial w}{\partial v}
 $$
@@ -246,7 +246,7 @@ TextGrad梯度通过以下方式计算：
 $$
 \frac{\partial\mathcal L}{\partial v}
     =
-\bigcup_{w\in\operatorname{SuccessorsOf}(v)}
+\bigcup_{w\in\mathrm{SuccessorsOf}(v)}
 {\color{#623F99}\nabla_f}
 \left(
 v,w,\frac{\partial\mathcal L}{\partial w}
@@ -267,7 +267,7 @@ $$
 $$
 v_{\text{new}}
     =
-{\color{#623F99}\operatorname{TGD.step}}
+{\color{#623F99}\mathrm{TGD.step}}
 \left(
 v,\frac{\partial\mathcal L}{\partial v}
 \right),
@@ -280,7 +280,7 @@ $$
 
 $$
 \begin{aligned}
-&\operatorname{Loss}({\color{#228B22}\text{code}},\text{target goal})\\
+&\mathrm{Loss}({\color{#228B22}\text{code}},\text{target goal})\\
 &={\color{#623F99}\text{LLM}}
 \begin{pmatrix}
 \text{以下是一段代码：}\lbrace\text{code}\rbrace。\\
