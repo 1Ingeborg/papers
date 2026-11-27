@@ -10,6 +10,17 @@
 
 我们提出了**达尔文哥德尔机（Darwin Gödel Machine，DGM）**，一种新型的自我改进系统。该系统通过迭代修改自身代码，并利用 coding benchmarks评测对每一次修改进行经验性验证（Empirical Validation）。受达尔文进化论和开放式演化（Open-endedness）研究的启发，DGM 不断扩充一个由生成的编程智能体组成的档案库（Archive）。它从档案库中采样智能体，这些智能体通过自我修改，产生具有新颖价值的新版本。
 
+---
+
+first-order improvements（只有一阶改进）
+
+- 这类方法里，负责改进的 meta-agent 是人写的、固定不变的。它能把下游 agent 改得更好，但它自己改进别人的能力从来不提升（参考[Automated Design of Agentic Systems (ADAS)](https://openreview.net/forum?id=t9U3LW7JVX&utm_source=chatgpt.com)）。
+- DGM 想要的是二阶改进：改进者本身也被改进。因为改进者和被改进者是同一个 coding agent，coding 能力变强，下一轮改代码的能力也跟着变强。
+
+human design of a suitable search space（搜索空间由人设计）
+
+- prompt 优化只能搜 prompt，DSPy、AFlow 一类只能在预先定义好的模块或算子里组合。能搜到什么，上限由人划定的范围决定。
+
 ## **Introduction**
 
 废话太多了，不写了，没啥意义，真tm会编
